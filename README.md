@@ -111,7 +111,7 @@ and try to find a kv pair with the same key.
 ### `func (*ConfigOption) Write`
 
 This function is much less abstract than the hash map. It is an implementaion
-of `filepath.WalkFunc`, it has the following signature:
+of [`filepath.WalkFunc`](https://godoc.org/path/filepath#WalkFunc), it has the following signature:
 
 ```go
 func (conf *ConfigOption) Write (path string, info os.FileInfo, err error) error
@@ -121,7 +121,7 @@ First we have to see if the `path` matches the `conf.capture` regular
 expression. If it doesn't we don't have to deal with this file and can return.
 If it does, we then have to loop through `conf.tmpls` and generate new file
 names for the destinations using
-[`func (*Regexp) Expand`](https://golang.org/pkg/regexp/#Regexp.Expand)
+[`func (*Regexp) Expand`](https://godoc.org/regexp#Regexp.Expand)
 Remeber to `defer` closing these files!
 
 ## Testing
