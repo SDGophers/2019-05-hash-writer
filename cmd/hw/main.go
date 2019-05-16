@@ -11,7 +11,7 @@ const HelpText = "help:\n\t%s config_file config_option root\n"
 
 func main() {
 
-	if len(os.Args) != 3 {
+	if len(os.Args) != 4 {
 		fmt.Printf(HelpText, os.Args[0])
 		os.Exit(1)
 	}

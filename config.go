@@ -10,7 +10,7 @@ import (
 )
 
 const ErrNoConfOpt = "config option %q not found"
-const ErrSyntax = "invalid syntax %q"
+const ErrSyntax = "invalid syntax %d"
 
 type ConfigOption struct {
 	capture *regexp.Regexp
@@ -48,12 +48,6 @@ func ParseConfig(r io.Reader) (*Config, error) {
 		}
 
 		optionName := scanner.Text()
-		if !scanner.Scan() {
-			return nil, fmt.Errorf(ErrSyntax, line)
-		} else {
-			line++
-		}
-
 		if !scanner.Scan() {
 			return nil, fmt.Errorf(ErrSyntax, line)
 		} else {

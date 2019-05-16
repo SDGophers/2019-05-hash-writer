@@ -51,10 +51,6 @@ the `func (*ConfigOption) Write`  method as the `WalkFunc`. This method will
 be doing the actual copying of files.
 
 ```go
-type Config struct {
-    m Map
-}
-
 type Map interface {
     Get(string) (interface{}, bool)
     Set(string, interface{})
@@ -62,10 +58,12 @@ type Map interface {
 }
 
 type ConfigOption struct {
-    capture string
-    tmpls []string
+	capture *regexp.Regexp
+	tmpls   []string
+}
 
-    captureExp *regexp.Regexp
+type Config struct {
+    m Map
 }
 ```
 
@@ -131,4 +129,15 @@ Remeber to `defer` closing these files!
 ...
 
 # Have fun!
+
+## Bonus
+
+Ideas to expand on, could be:
+* Sort the bucket lists for fast access
+  * sorting can be done by hash value, an extra field needs to be added
+    to the `kvPair` struct
+* other hashmap schemes
+* test against a simple unsorted list and find a break even point
+* more control with command line options
+* what happesn when files get written into a child of the tree?
 
